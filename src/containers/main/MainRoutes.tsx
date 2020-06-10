@@ -78,6 +78,13 @@ const NoPeerReviewPage = React.lazy(() =>
   ),
 );
 
+const ResultPage = React.lazy(() =>
+  import(
+    /* webpackChunkName: "peer-start-review-page" */
+    'src/pages/result-page/ResultPage'
+  ),
+);
+
 interface Props {}
 
 const query = graphql`
@@ -141,6 +148,10 @@ export function MainRoutes(props: FCProps<Props>) {
         <Route path="/" children={<ManagerReviewPage />} />;
       </Switch>
     );
+  }
+
+  if (phase === 'RESULTS') {
+    return <ResultPage />;
   }
 
   // TODO support other phases
