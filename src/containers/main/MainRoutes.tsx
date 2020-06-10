@@ -151,7 +151,11 @@ export function MainRoutes(props: FCProps<Props>) {
   }
 
   if (phase === 'RESULTS') {
-    return <ResultPage />;
+    return (
+      <Switch>
+        <Route path="/:tab?" children={<ResultPage />} />;
+      </Switch>
+    );
   }
 
   // TODO support other phases

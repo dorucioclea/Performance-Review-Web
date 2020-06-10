@@ -12,6 +12,7 @@ import { i18n } from '@lingui/core';
 import { useAuthGuardUser } from 'src/core/auth';
 
 import CriteriaResultPage from './criteria-result-page/CriteriaResultPage';
+import { StrengthsWeaknessesResultPage } from './strength-weaknesses-result-page/StrengthsWeaknessesResultPage';
 
 interface Params {
   tab?: string;
@@ -25,7 +26,7 @@ export default function ResultPage(props: Props) {
   const { tab } = useParams<Params>();
   const { id: revieweeId } = useAuthGuardUser();
 
-  const toPrefix = '/self-review';
+  const toPrefix = '';
 
   return (
     <Container maxWidth="md">
@@ -59,11 +60,11 @@ export default function ResultPage(props: Props) {
                   path={toPrefix + '/performance-competencies'}
                   children={<CriteriaResultPage revieweeId={revieweeId} />}
                 />
-                {/*<Route
+                <Route
                   path={toPrefix + '/dominant-characteristics'}
-                  children={<StrengthsWeaknessesPage revieweeId={revieweeId} />}
+                  children={<StrengthsWeaknessesResultPage revieweeId={revieweeId} />}
                 />
-                <Route path={toPrefix + '/achievements'} children={<ProjectsPage />} />*/}
+                {/*<Route path={toPrefix + '/achievements'} children={<ProjectsPage />} />*/}
                 <Redirect to={toPrefix + '/performance-competencies'} />
               </Switch>
             </PromptProvider>
